@@ -16,7 +16,7 @@ pipeline {
        stage("Code Quality - Sonarqube"){
            steps{
                withSonarQubeEnv('Sonarqube') {
-                   sh "mvn -Dsonar.projectKey=${env['GIT_BRANCH']} sonar:sonar"
+                   sh "mvn -Dsonar.projectKey='pibfe-${env['GIT_BRANCH']}' sonar:sonar"
                }              
            }
        }
