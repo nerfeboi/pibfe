@@ -28,7 +28,8 @@ pipeline {
                         //FINAL_BRANCH = '${env.CHANGE_BRANCH}'
                         //echo "Final Branch Name: ${env.CHANGE_BRANCH}"
                      }
-                        FINAL_BRANCH = sh(returnStdout: true, script: '${env.CHANGE_BRANCH}')
+                        //FINAL_BRANCH = sh(returnStdout: true, script: '${env.CHANGE_BRANCH}')
+                     FINAL_BRANCH = env.CHANGE_BRANCH
                      echo "Final Branch Name: ${FINAL_BRANCH}"
                   }
                    //sh "mvn -Dsonar.projectKey='${env['GIT_BRANCH']}-sit' -Dsonar.projectName='${env['GIT_BRANCH']}-sit' sonar:sonar"
