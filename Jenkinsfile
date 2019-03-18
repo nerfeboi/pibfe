@@ -13,7 +13,7 @@ pipeline {
                 archive 'target/*.jar'
            }
        }
-       stage("Code Quality - Sonarqube"){
+       stage('Code Quality - Sonarqube'){
            steps{
                withSonarQubeEnv('Sonarqube') {
                    sh "mvn -Dsonar.branch.longLivedBranches.regex='(branch|release|${env['GIT_BRANCH']}).*' -Dsonar.branch.name='${env['GIT_BRANCH']}-sit' -Dsonar.projectKey='${env['GIT_BRANCH']}-sit' sonar:sonar"
