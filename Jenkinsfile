@@ -17,7 +17,7 @@ pipeline {
                withSonarQubeEnv('Sonarqube') {
                   script{
                      if (env.BRANCH_NAME.startsWith('PR')) {
-                           echo "env.BRANCH_NAME"
+                        echo "Branch Name: ${env.BRANCH_NAME}"
                      }
                   }
                    //sh "mvn -Dsonar.projectKey='${env['GIT_BRANCH']}-sit' -Dsonar.projectName='${env['GIT_BRANCH']}-sit' sonar:sonar"
