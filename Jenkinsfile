@@ -1,9 +1,9 @@
 pipeline {
    agent any
-    //parameters {
-    //    string(name: 'FINAL_BRANCH', defaultValue: '')
-    //} 
-   def FINAL_BRANCH = "${env.CHANGE_BRANCH}"
+    parameters {
+        string(name: 'FINAL_BRANCH', defaultValue: '')
+    } 
+   def finalBranch = env.FINAL_BRANCH
    stages{
        stage('Build') {
            steps{
@@ -30,7 +30,7 @@ pipeline {
                         //echo "Final Branch Name: ${env.CHANGE_BRANCH}"
                      }
                         //FINAL_BRANCH = '${env.CHANGE_BRANCH}'
-                       echo "Final Branch Name: ${FINAL_BRANCH}"
+                     echo "Final Branch Name: ${finalBranch}"
                   }
                    //sh "mvn -Dsonar.projectKey='${env['GIT_BRANCH']}-sit' -Dsonar.projectName='${env['GIT_BRANCH']}-sit' sonar:sonar"
                    //sh "mvn -Dsonar.projectKey='${env['GIT_BRANCH']}-uat' -Dsonar.projectName='${env['GIT_BRANCH']}-uat' sonar:sonar"                         
