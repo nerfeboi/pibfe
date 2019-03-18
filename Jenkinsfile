@@ -1,8 +1,9 @@
 pipeline {
    agent any
-    parameters {
-        string(name: 'FINAL_BRANCH', defaultValue: '${env['GIT_BRANCH']}')
-    } 
+    //parameters {
+    //    string(name: 'FINAL_BRANCH', defaultValue: '')
+    //} 
+   def FINAL_BRANCH = "${env.CHANGE_BRANCH}"
    stages{
        stage('Build') {
            steps{
@@ -22,9 +23,14 @@ pipeline {
                      if (env.BRANCH_NAME.startsWith('PR')) {
                         echo "Branch Name: ${env.BRANCH_NAME}"
                         echo "Change Branch Name: ${env.CHANGE_BRANCH}"
-                        FINAL_BRANCH = '${env.CHANGE_BRANCH}'
-                        echo "Final Branch Name: ${env.CHANGE_BRANCH}"
+                        //FINAL_BRANCH = '${env.CHANGE_BRANCH}'
+                        //echo "Final Branch Name: ${env.CHANGE_BRANCH}"
+                     }else{
+                        //FINAL_BRANCH = '${env.CHANGE_BRANCH}'
+                        //echo "Final Branch Name: ${env.CHANGE_BRANCH}"
                      }
+                        //FINAL_BRANCH = '${env.CHANGE_BRANCH}'
+                       echo "Final Branch Name: ${FINAL_BRANCH}"
                   }
                    //sh "mvn -Dsonar.projectKey='${env['GIT_BRANCH']}-sit' -Dsonar.projectName='${env['GIT_BRANCH']}-sit' sonar:sonar"
                    //sh "mvn -Dsonar.projectKey='${env['GIT_BRANCH']}-uat' -Dsonar.projectName='${env['GIT_BRANCH']}-uat' sonar:sonar"                         
