@@ -31,8 +31,8 @@ pipeline {
                      echo "Change ID: ${env.CHANGE_ID}"
 
                    if (env.BRANCH_NAME.startsWith('PR')) {
-                        sh "mvn -Dsonar.projectKey='${FINAL_BRANCH}-sit-${env.BRANCH_NAME}' -Dsonar.projectName='${FINAL_BRANCH}-sit${env.BRANCH_NAME}' sonar:sonar"
-                        sh "mvn -Dsonar.projectKey='${FINAL_BRANCH}-uat-${env.BRANCH_NAME}' -Dsonar.projectName='${FINAL_BRANCH}-uat${env.BRANCH_NAME}' sonar:sonar"                                            
+                        sh "mvn -Dsonar.projectKey='${FINAL_BRANCH}-sit-${env.BRANCH_NAME}' -Dsonar.projectName='${FINAL_BRANCH}-sit-${env.BRANCH_NAME}' sonar:sonar"
+                        sh "mvn -Dsonar.projectKey='${FINAL_BRANCH}-uat-${env.BRANCH_NAME}' -Dsonar.projectName='${FINAL_BRANCH}-uat-${env.BRANCH_NAME}' sonar:sonar"                                            
                         sh "mvn -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.branch='${FINAL_BRANCH}-sit-${env.BRANCH_NAME}' -Dsonar.projectKey='${FINAL_BRANCH}-sit-${env.BRANCH_NAME}' -Dsonar.projectName='${FINAL_BRANCH}-sit-${env.BRANCH_NAME}' sonar:sonar"
                         sh "mvn -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.branch='${FINAL_BRANCH}-uat-${env.BRANCH_NAME}' -Dsonar.projectKey='${FINAL_BRANCH}-uat-${env.BRANCH_NAME}' -Dsonar.projectName='${FINAL_BRANCH}-uat-${env.BRANCH_NAME}' sonar:sonar"                                                                  
                    }else{
