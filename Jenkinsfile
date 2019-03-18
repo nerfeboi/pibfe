@@ -18,6 +18,7 @@ pipeline {
                   script{
                      if (env.BRANCH_NAME.startsWith('PR')) {
                         echo "Branch Name: ${env.BRANCH_NAME}"
+                        echo "Change Branch Name: ${env. CHANGE_BRANCH}"
                      }
                   }
                    //sh "mvn -Dsonar.projectKey='${env['GIT_BRANCH']}-sit' -Dsonar.projectName='${env['GIT_BRANCH']}-sit' sonar:sonar"
