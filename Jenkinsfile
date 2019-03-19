@@ -6,6 +6,11 @@ pipeline {
    stages{
        stage('Build') {
            steps{
+              script{
+                        sh 'git fetch --all'
+                        sh 'git branch -D master'
+                        sh 'git rev-parse origin/master'
+              }
                  sh "mvn -Dmaven.test.failure.ignore clean package"
            }
        }
@@ -24,9 +29,6 @@ pipeline {
                         echo "Change Branch Name: ${env.CHANGE_BRANCH}"
                         //FINAL_BRANCH = env.CHANGE_BRANCH + "-" + env.BRANCH_NAME
                         FINAL_BRANCH = env.CHANGE_BRANCH
-                        sh 'git fetch --all'
-                        //sh 'git branch -D master'
-                        sh 'git rev-parse origin/master'
                      }else{
                         FINAL_BRANCH = env.GIT_BRANCH
                      }
