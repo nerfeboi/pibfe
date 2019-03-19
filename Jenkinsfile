@@ -8,7 +8,7 @@ pipeline {
            steps{
               script{
                         sh 'git fetch --all'
-                        sh 'git branch -D master'
+                        //sh 'git branch -D master'
                         sh 'git rev-parse origin/master'
               }
                  sh "mvn -Dmaven.test.failure.ignore clean package"
