@@ -17,6 +17,7 @@ pipeline {
            steps{
                withSonarQubeEnv('Sonarqube') {
                    sh "mvn -Dsonar.projectKey='pibfe-${env['GIT_BRANCH']}' sonar:sonar"
+                   sh "mvn -Dsonar.branch.longLivedBranches.regex='(branch|release|pibfe-${env['GIT_BRANCH']}).*' -Dsonar.branch.name='pibfe-${env['GIT_BRANCH']}' -Dsonar.projectKey='pibfe-${env['GIT_BRANCH']}' sonar:sonar"
                }              
            }
        }
