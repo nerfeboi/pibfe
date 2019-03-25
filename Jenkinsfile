@@ -3,6 +3,7 @@ pipeline {
     parameters {
         string(name: 'FINAL_BRANCH', defaultValue: '')
     } 
+   
    stages{
       stage('Init'){
          steps{
