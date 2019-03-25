@@ -7,7 +7,6 @@ pipeline {
    stages{
       stage('Init'){
          steps{
-            cleanWs()
             script{
                if (env.BRANCH_NAME.startsWith('PR')) {
                   echo "Branch Name: ${env.BRANCH_NAME}"
