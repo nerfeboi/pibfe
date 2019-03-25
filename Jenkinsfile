@@ -1,5 +1,5 @@
 pipeline {
-   agent any
+   agent {label 'JenkinsSlave2'}
     parameters {
         string(name: 'FINAL_BRANCH', defaultValue: '')
     } 
