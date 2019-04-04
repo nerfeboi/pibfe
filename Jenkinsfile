@@ -1,5 +1,6 @@
 pipeline {
    agent {label 'JenkinsSlave1'}
+   agent any
     parameters {
         string(name: 'FINAL_BRANCH', defaultValue: '')
     } 
@@ -53,5 +54,24 @@ pipeline {
                }              
            }          
        }
+      stage('artifactory'){
+         steps{
+            script{
+               def server = Artifactory.server('Artifactory')
+               def uploadBase = "PIB"
+               def uploadSpec = """{
+                                       "files":[
+                                           {
+                                               "pattern": "**/target/*.jar",
+                                               "target": "${uploadBase}/"
+                                           }
+                                       ]
+                                   }                             
+                                   """
+               def buildInfo = server.upload(uploadSpec)
+               server.publishBuildInfo(buildInfo)                
+            }
+         }
+      }
    }
 }
