@@ -57,10 +57,6 @@ pipeline {
       stage('artifactory'){
          steps{
             script{
-               pipeline{
-    stages{
-        stage('uplaod'){
-            steps{
                def server = Artifactory.server('Artifactory')
                def uploadBase = "PIB"
                def uploadSpec = """{
@@ -76,5 +72,6 @@ pipeline {
                server.publishBuildInfo(buildInfo)                
             }
          }
+      }
    }
 }
